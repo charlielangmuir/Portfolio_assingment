@@ -39,27 +39,34 @@
     .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: var(--muted); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; animation: fadeUp 0.6s 0.5s ease both; }
     .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2s ease infinite; }
     .btn { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.7rem 1.6rem; border-radius: 3px; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
-    .btn-primary { background: var(--accent); color: #0d0d0d; }
-    .btn-primary:hover { background: #d8ff7a; transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-
+    .btn-primary { background: var(--accent); color: #0d0d0d; } .btn-primary:hover { background: #d8ff7a; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); } .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .about-bio p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.0rem; }
-    .about-bio p strong { color: var(--text); font-weight: 500; }
+    .about-bio p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.0rem; } .about-bio p strong { color: var(--text); font-weight: 500; }
     .contact-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
     .contact-list li { display: flex; align-items: center; gap: 0.8rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
-    .contact-list a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .contact-list a:hover { color: var(--accent); }
+    .contact-list a { color: var(--muted); text-decoration: none; transition: color 0.2s; } .contact-list a:hover { color: var(--accent); }
     .contact-icon { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
     .philosophy-box { margin-top: 2.5rem; padding: 2rem; border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 4px 4px 0; }
     .philosophy-box .quote-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
     .philosophy-box p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; }
 
+    .resume-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .resume-group { margin-bottom: 2.5rem; }
+    .resume-group-title { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.4rem; }
+    .resume-entry { margin-bottom: 1.5rem; }
+    .resume-entry-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem; }
+    .resume-entry-title { font-weight: 500; font-size: 0.95rem; color: var(--text); }
+    .resume-entry-date { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); white-space: nowrap; margin-left: 1rem; }
+    .resume-entry-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .resume-entry-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.3rem 0.8rem; border: 1px solid var(--border); border-radius: 2px; color: var(--muted); background: var(--surface); transition: all 0.2s; }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
     .section-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); }
     footer { text-align: center; padding: 3rem 2.5rem; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
     footer a { color: var(--accent); text-decoration: none; }
-
     @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
   </style>
@@ -68,12 +75,7 @@
 <div id="root"></div>
 <script type="text/babel">
 
-const GithubIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.57v-2c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48.99.1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-  </svg>
-);
-
+const GithubIcon   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.57v-2c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48.99.1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>;
 const EmailIcon    = () => <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>;
 const PhoneIcon    = () => <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.86A16 16 0 0 0 15.14 16.1l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>;
 const GhContactIcon= () => <svg className="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.57v-2c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48.99.1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>;
@@ -82,14 +84,7 @@ const LocationIcon = () => <svg className="contact-icon" viewBox="0 0 24 24" fil
 function Nav() {
   const links = ["About","Resume","Cover Letter","Credentials","Work Samples","Capstone"];
   const ids   = ["about","resume","cover-letter","credentials","work-samples","capstone"];
-  return (
-    <nav>
-      <span className="nav-logo">CL</span>
-      <ul className="nav-links">
-        {links.map((l,i) => <li key={l}><a href={`#${ids[i]}`}>{l}</a></li>)}
-      </ul>
-    </nav>
-  );
+  return <nav><span className="nav-logo">CL</span><ul className="nav-links">{links.map((l,i)=><li key={l}><a href={`#${ids[i]}`}>{l}</a></li>)}</ul></nav>;
 }
 
 function Hero() {
@@ -117,8 +112,8 @@ function About() {
       <div className="about-grid">
         <div className="about-bio">
           <p><strong>Charlie Langmuir</strong> is a Computer Programmer &amp; Analyst candidate at George Brown College, graduating in Spring 2026. With a strong foundation in full-stack development and nearly six years of hands-on experience with Java, Charlie brings a methodical and curious approach to every problem.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
         </div>
         <div>
           <ul className="contact-list">
@@ -129,8 +124,69 @@ function About() {
           </ul>
           <div className="philosophy-box">
             <p className="quote-label">Philosophy / Career Goal</p>
-            <p>"We are the facilitators of our own creative evolution" — Bill Hicks. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <p style={{marginTop:'1rem'}}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            <p>"We are the facilitators of our own creative evolution" — Bill Hicks. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p style={{marginTop:'1rem'}}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Resume() {
+  return (
+    <section id="resume">
+      <p className="section-label">02 — Resume</p>
+      <h2 className="section-title">Experience &amp; Skills</h2>
+      <div className="resume-cols">
+        <div>
+          <div className="resume-group">
+            <p className="resume-group-title">Education</p>
+            <div className="resume-entry">
+              <div className="resume-entry-header">
+                <span className="resume-entry-title">Computer Programmer &amp; Analyst</span>
+                <span className="resume-entry-date">2023 – 2026</span>
+              </div>
+              <p className="resume-entry-sub">George Brown College — Toronto, ON</p>
+              <p className="resume-entry-desc">Advanced Diploma. Graduating Spring 2026. Focus on full-stack development, systems analysis, and software design patterns.</p>
+            </div>
+          </div>
+          <div className="resume-group">
+            <p className="resume-group-title">Work Experience</p>
+            <div className="resume-entry">
+              <div className="resume-entry-header">
+                <span className="resume-entry-title">Front End Developer</span>
+                <span className="resume-entry-date">2022 – 2023</span>
+              </div>
+              <p className="resume-entry-sub">Previous Employer — Toronto, ON</p>
+              <p className="resume-entry-desc">Developed and maintained user-facing features using modern JavaScript frameworks. Collaborated with cross-functional teams to deliver responsive, accessible interfaces.</p>
+            </div>
+            <div className="resume-entry">
+              <div className="resume-entry-header">
+                <span className="resume-entry-title">Data Management Specialist</span>
+                <span className="resume-entry-date">2020 – 2022</span>
+              </div>
+              <p className="resume-entry-sub">Previous Employer — Toronto, ON</p>
+              <p className="resume-entry-desc">Managed data pipelines and ensured data integrity across internal systems. Gained valuable experience with API integration patterns and ETL workflows.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="resume-group">
+            <p className="resume-group-title">Technical Skills</p>
+            <div className="skills-grid">
+              {["Java","Spring Boot","JavaScript","TypeScript","React","Node.js","Python","SQL","PostgreSQL","MySQL","MongoDB","REST APIs","Git","Docker","HTML/CSS","JUnit"].map(s=>(
+                <span key={s} className="skill-tag">{s}</span>
+              ))}
+            </div>
+          </div>
+          <div className="resume-group" style={{marginTop:'2rem'}}>
+            <p className="resume-group-title">Soft Skills</p>
+            <div className="skills-grid">
+              {["Technical Leadership","System Design","Agile/Scrum","Code Review","Documentation","Team Collaboration","Problem Solving"].map(s=>(
+                <span key={s} className="skill-tag">{s}</span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -145,6 +201,8 @@ function App() {
       <Hero />
       <div className="section-divider" />
       <About />
+      <div className="section-divider" />
+      <Resume />
       <footer>
         <p>© 2026 Charlie Langmuir &nbsp;·&nbsp; <a href="https://github.com/charlielangmuir" target="_blank" rel="noreferrer">github.com/charlielangmuir</a> &nbsp;·&nbsp; charlie.langmuir@gmail.com</p>
       </footer>
